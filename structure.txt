@@ -1,0 +1,126 @@
+atlas-risk-system/
+├── main.py
+├── run.py                          
+├── pyproject.toml                  
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── .env.example
+├── LICENSE
+
+├── data/                           # всі дані програми
+│   ├── events.json
+│   ├── risks.json
+│   ├── risk_appetite.json
+│   ├── coordinators.json
+│   └── archive/                    # старі/архівні дані
+
+├── config/
+│   ├── __init__.py
+│   ├── settings.py                 # Config class + pydantic-settings
+│   ├── constants.py                # COLORS, RISK_COLORS, EVENT_TYPES...
+│   ├── paths.py
+│   └── logging_config.py
+
+├── models/
+│   ├── __init__.py
+│   ├── base.py                     # BaseRecord, BaseAuditModel
+│   ├── event.py
+│   ├── risk.py
+│   ├── risk_appetite.py
+│   ├── coordinator.py
+│   └── enums.py                    # RiskStatus, PriorityLevel, EventType...
+
+├── core/
+│   ├── __init__.py
+│   ├── styles.py                   # apply_dark_style + всі make_button, make_dark_entry...
+│   ├── utils.py                    # date validation, score calculation, toast...
+│   ├── exporters.py
+│   ├── importers.py
+│   ├── base_detail_window.py
+│   ├── base_registry_tab.py
+│   ├── base_analytics_tab.py
+│   └── exceptions.py
+
+├── modules/                        # кожен модуль — повноцінний пакет
+│   ├── __init__.py
+│   │
+│   ├── material_events/
+│   │   ├── __init__.py
+│   │   ├── models.py               # якщо потрібні додаткові моделі
+│   │   ├── views/
+│   │   │   ├── detail_window.py
+│   │   │   ├── registry_tab.py
+│   │   │   ├── analytics_tab.py
+│   │   │   └── settings_tab.py
+│   │   └── controllers.py          # логіка додавання, валідації, фільтрів
+│   │
+│   ├── risk_register/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── views/
+│   │   │   ├── detail_window.py
+│   │   │   ├── registry_tab.py
+│   │   │   ├── analytics_tab.py
+│   │   │   └── settings_tab.py
+│   │   └── controllers.py
+│   │
+│   ├── risk_appetite/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── views/
+│   │   │   ├── registry_tab.py
+│   │   │   └── matrix_view.py
+│   │   └── controllers.py
+│   │
+│   ├── dashboard/
+│   │   ├── __init__.py
+│   │   ├── views/
+│   │   │   └── main_dashboard.py
+│   │   └── controllers.py
+│   │
+│   ├── reports/
+│   │   ├── __init__.py
+│   │   ├── generators/
+│   │   │   ├── pdf_generator.py
+│   │   │   └── excel_generator.py
+│   │   └── views/report_center.py
+│   │
+│   └── risk_coordinators/
+│       ├── __init__.py
+│       ├── models.py
+│       ├── views/coordinators_tab.py
+│       └── controllers.py
+
+├── ui/
+│   ├── __init__.py
+│   ├── atlas_app.py                # головний клас + роутер сторінок
+│   ├── navigation/
+│   │   ├── sidebar.py
+│   │   └── topbar.py
+│   └── components/                 # перевикористовувані віджети
+│       ├── search_bar.py
+│       ├── status_bar.py
+│       ├── filter_panel.py
+│       └── treeview_enhanced.py
+
+├── services/                       # бізнес-логіка, не прив'язана до UI
+│   ├── __init__.py
+│   ├── audit_service.py            # логування всіх дій
+│   ├── notification_service.py
+│   ├── backup_service.py
+│   └── data_service.py             # CRUD для всіх модулів
+
+├── utils/
+│   ├── __init__.py
+│   ├── validators.py
+│   ├── formatters.py
+│   └── helpers.py
+
+├── tests/                          # структура для майбутніх тестів
+│   ├── unit/
+│   ├── integration/
+│   └── fixtures/
+
+└── logs/                           # .gitignored
+    └── atlas.log
